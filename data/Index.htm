@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Monitoramento</title>
+        <title>ESP32-CAM_AVI2SD</title>
         <script src='/web?jquery.min.js'></script>
         <style>
             :root {
@@ -547,23 +547,23 @@
     </head>
     <body>
     <div class="tab">
-      <button class="tablinks active">Câmera</button>
-      <button class="tablinks">Mostrar LOG</button>
-      <button class="tablinks">Editar Configurações</button>
-      <button class="tablinks">Atualização</button>
+      <button class="tablinks active">Camera</button>
+      <button class="tablinks">Show Log</button>
+      <button class="tablinks">Edit Config</button>
+      <button class="tablinks">OTA Upload</button>
     </div>
     <div id="Camera" class="tabcontent" style="display:block">
         <section id="main">
             <section id="header">
               <section id="title">
-                <h2 id="page-title">Monitoramento</h2>&nbsp;
+                <h2 id="page-title">ESP32-CAM_AVI2SD</h2>&nbsp;
                 <h6 id="fw_version" class="default-action displayonly"></h6>
               </section>
               <nav id="maintoolbar">
               	<ul class="navtop">
-                  <li><button id="forceRecord" class="default-action" style="float:right;">Gravar</button></li>
-                  <li><button id="get-still" style="float:right;">Tirar foto</button></li>
-                  <li><button id="toggle-stream" style="float:right;">Ver câmera</button></li>
+                  <li><button id="forceRecord" class="default-action" style="float:right;">Record</button></li>
+                  <li><button id="get-still" style="float:right;">Get Still</button></li>
+                  <li><button id="toggle-stream" style="float:right;">Start Stream</button></li>
                 </ul>  
               </nav>
             </section>          
@@ -571,10 +571,10 @@
                 <div id="sidebar">
                     <nav class="menu">                                                                
                         <input type="checkbox" id="control-cb" class="menu-action" checked="checked">
-                        <label for="control-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Controle da câmera&nbsp;&nbsp;</label>
+                        <label for="control-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Camera Control&nbsp;&nbsp;</label>
                         <div>                    
                           <div class="input-group" id="framesize-group">
-                              <label for="framesize">Resolução</label>
+                              <label for="framesize">Resolution</label>
                               <select id="framesize" class="default-action">
                                   <option value="13">UXGA(1600x1200)</option>
                                   <option value="12">SXGA(1280x1024)</option>
@@ -600,84 +600,84 @@
                               <div class="range-max">30</div>
                           </div>
                           <div class="input-group" id="quality-group">
-                              <label for="quality">Qualidade</label>
+                              <label for="quality">Quality</label>
                               <div class="range-min">10</div>
                               <input title="Set the recording quality" type="range" id="quality" min="10" max="63" value="10" class="default-action">
                               <output name="rangeVal">10</output>
                               <div class="range-max">63</div>
                           </div>                          
                            <div class="input-group" id="debugging-group">
-                              <label for="wsMode" title="Enable logging to websocket">Log da conexão</label>
+                              <label for="wsMode" title="Enable logging to websocket">Log to WS</label>
                               <div class="switch">
                                   <input id="wsMode" type="checkbox">
                                   <label title="Output log to WS" class="slider" for="wsMode"></label>
                               </div>   
                            </div>           
                            <div class="input-group" id="debugging-group">
-                              <label for="logMode" title="Enable logging to sd card">Log do SD</label>
+                              <label for="logMode" title="Enable logging to sd card">Log to SD</label>
                               <div class="switch">
                                   <input id="logMode" type="checkbox" class="default-action">
                                   <label title="Output log to SD" class="slider" for="logMode"></label>
                               </div>   
                            </div>                           
                            <div class="input-group" id="dbg-group">
-                              <label for="dbgVerbose">Log detalhado</label>
+                              <label for="dbgVerbose">Verbose</label>
                               <div class="switch">
                                   <input id="dbgVerbose" type="checkbox" class="default-action">
                                   <label title="Outputs additional information to log" class="slider" for="dbgVerbose"></label>
                               </div>
                           </div>
                           <div class="input-group" id="sfiles-group" style="display: grid;">
-                            <label for="sfiles">Selecione pasta / arquivo</label>                          
+                            <label for="sfiles">Select folder / file</label>                          
                             <select title="Select sd card file or folder" id="sfile" style="font-size: 11px;">
                               <option value="None" selected="selected">-- Select --</option>
-                              <option value="/">Obter pastas</option>
+                              <option value="/">Get Folders</option>
                             </select>
                           </div>
                           <progress id="progressBar" value='0' max='100' class="default-action info"></progress>%
                           <section id="buttons"><br>
                             <button title="Download selected file from sd card" id="download" style="float:right; " value="1">Download</button>
-                            <button title="Upload selected file/folder to ftp server" id="upload" style="float:left; " value="1">Upload FTP</button>
-                            <button title="Upload selected file/folder and delete it from sd card on success" id="uploadMove" style="float:left; " value="1">Mover FTP</button>
-                            <button title="Delete selected file/folder from sd card" id="delete" style="float:right; " value="1">Apagar</button>
+                            <button title="Upload selected file/folder to ftp server" id="upload" style="float:left; " value="1">Ftp Upload</button>
+                            <button title="Upload selected file/folder and delete it from sd card on success" id="uploadMove" style="float:left; " value="1">Ftp Move</button>
+                            <button title="Delete selected file/folder from sd card" id="delete" style="float:right; " value="1">Delete</button>
                           </section><br>
                           <div class="input-group" id="autoUpload-group">
-                              <label for="autoUpload">Upload automático</label>
+                              <label for="autoUpload">Auto upload</label>
                               <div class="switch">
                                   <input id="autoUpload" type="checkbox" class="default-action">
                                   <label title="Automatic ftp upload on file creation" class="slider" for="autoUpload"></label>
                               </div>
                           </div>                              
                           <div class="input-group" id="micGain-group">
-                              <label for="micGain">Ganho do microfone</label>
+                              <label for="micGain">Microphone Gain</label>
                               <div class="range-min">0</div>
                               <input title="Set microphone gain" type="range" id="micGain" min="0" max="10" value="0" class="default-action">
                               <output name="rangeVal">0</output>
                               <div class="range-max">10</div>
                           </div>                          
                           <div class="input-group" id="lamp-group">
-                              <label for="enableMotion">Detectar Mov.</label>
+                              <label for="enableMotion">Enable motion detect</label>
                               <div class="switch">
                                   <input id="enableMotion" type="checkbox" class="default-action">
                                   <label title="Enable/disable motion detection" class="slider" for="enableMotion"></label>
                               </div>
                            </div>
                           <div class="input-group" id="motion-group">
-                              <label for="motion">Sensibilidade Mov.</label>
+                              <label for="motion">Motion Sensitivity</label>
                               <div class="range-min">1</div>
                               <input title="Set motion detection sensitivity" type="range" id="motion" min="1" max="10" value="7" class="default-action">
                               <output name="rangeVal">7</output>
                               <div class="range-max">10</div>
                           </div> 
                           <div class="input-group" id="minf-group">
-                              <label for="minf">Segundos</label>
+                              <label for="minf">Min Seconds</label>
                               <div class="range-min">0</div>
                               <input title="Minimum number of frames to be captured or the file is deleted" type="range" id="minf" min="0" max="20" value="5" class="default-action">
                               <output name="rangeVal">5</output>
                               <div class="range-max">20</div>
                          </div>                     
                           <div class="input-group" id="record-group">
-                              <label for="record">Salvar captura</label>
+                              <label for="record">Save Capture</label>
                               <div class="switch">
                                   <input id="record" type="checkbox" class="default-action">
                                   <label title="Enable recording on motion detection" class="slider" for="record"></label>
@@ -691,14 +691,14 @@
                               </div>
                           </div>
                           <div class="input-group" id="lswitch-group">
-                              <label for="lswitch">Luz Noturna</label>
+                              <label for="lswitch">Night Switch</label>
                               <div class="range-min">0</div>
                               <input title="Set night switch sensitivity" type="range" id="lswitch" min="0" max="100" value="10" class="default-action">
                               <output name="rangeVal">10</output>
                               <div class="range-max">100</div>
                           </div> 
                           <div class="input-group" id="lamp-group">
-                              <label for="lamp">Lâmpada</label>
+                              <label for="lamp">Lamp</label>
                               <div class="switch">
                                   <input id="lamp" type="checkbox" class="default-action">
                                   <label title="Control onboard led" class="slider" for="lamp"></label>
@@ -712,60 +712,60 @@
                               </div>
                            </div>
                            <div class="input-group" id="CamTilt-group">
-                              <label for="camTilt">Inclinação da lente</label>
+                              <label for="camTilt">Camera Tilt</label>
                               <div class="range-min">0</div>
                                   <input title="Set camera tilt angle" type="range" id="camTilt" min="0" max="180" value="90" class="default-action">
                               <output name="rangeVal">90</output>
                               <div class="range-max">180</div>
                           </div>
                           <div class="input-group" id="CamPan-group">
-                              <label for="camPan">Panorâmica da lente</label>
+                              <label for="camPan">Camera Pan</label>
                               <div class="range-min">0</div>
                                   <input title="Set camera pan angle" type="range" id="camPan" min="0" max="180" value="90" class="default-action">
                               <output name="rangeVal">90</output>
                               <div class="range-max">180</div>
                           </div>
                           <div class="input-group extras" id="atemp-group">
-                              <label for="atemp">Temperatura</label>
+                              <label for="atemp">Camera Temp</label>
                               &nbsp;<div id="atemp" class="default-action displayonly" name="textonly">&nbsp;</div>
                           </div>  
                        </div>
                      </nav>
                      <nav class="menu">                                                                
                         <input type="checkbox" id="settings-cb" class="menu-action">
-                        <label for="settings-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Configurações da câmera&nbsp;&nbsp;</label>
+                        <label for="settings-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Camera Settings&nbsp;&nbsp;</label>
                         <div>
                           <div class="input-group" id="brightness-group">
-                              <label for="brightness">Brilho</label>
+                              <label for="brightness">Brightness</label>
                               <div class="range-min">-2</div>
                               <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
                               <output name="rangeVal">0</output>
                               <div class="range-max">2</div>
                           </div>
                           <div class="input-group" id="contrast-group">
-                              <label for="contrast">Contraste</label>
+                              <label for="contrast">Contrast</label>
                               <div class="range-min">-2</div>
                               <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
                               <output name="rangeVal">0</output>
                               <div class="range-max">2</div>
                           </div>
                           <div class="input-group" id="saturation-group">
-                              <label for="saturation">Saturação</label>
+                              <label for="saturation">Saturation</label>
                               <div class="range-min">-2</div>
                               <input type="range" id="saturation" min="-2" max="2" value="0" class="default-action">
                               <output name="rangeVal">0</output>
                               <div class="range-max">2</div>
                           </div>
                           <div class="input-group" id="special_effect-group">
-                              <label for="special_effect">Efeito especial</label>
+                              <label for="special_effect">Special Effect</label>
                               <select id="special_effect" class="default-action">
-                                  <option value="0" selected="selected">Sem efeito</option>
-                                  <option value="1">Negativo</option>
-                                  <option value="2">Escala cinza</option>
-                                  <option value="3">Tinta vermelha</option>
-                                  <option value="4">Tinta verde</option>
-                                  <option value="5">Tinta azul</option>
-                                  <option value="6">Sépia</option>
+                                  <option value="0" selected="selected">No Effect</option>
+                                  <option value="1">Negative</option>
+                                  <option value="2">Grayscale</option>
+                                  <option value="3">Red Tint</option>
+                                  <option value="4">Green Tint</option>
+                                  <option value="5">Blue Tint</option>
+                                  <option value="6">Sepia</option>
                               </select>
                           </div>
                           <div class="input-group" id="awb-group">
@@ -776,24 +776,24 @@
                               </div>
                           </div>
                           <div class="input-group" id="awb_gain-group">
-                              <label for="awb_gain">Ganho AWB</label>
+                              <label for="awb_gain">AWB Gain</label>
                               <div class="switch">
                                   <input id="awb_gain" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="awb_gain"></label>
                               </div>
                           </div>
                           <div class="input-group" id="wb_mode-group">
-                              <label for="wb_mode">Modo WB</label>
+                              <label for="wb_mode">WB Mode</label>
                               <select id="wb_mode" class="default-action">
-                                  <option value="0" selected="selected">Automático</option>
-                                  <option value="1">Ensolarado</option>
-                                  <option value="2">Nublado</option>
-                                  <option value="3">Escritório</option>
-                                  <option value="4">Casa</option>
+                                  <option value="0" selected="selected">Auto</option>
+                                  <option value="1">Sunny</option>
+                                  <option value="2">Cloudy</option>
+                                  <option value="3">Office</option>
+                                  <option value="4">Home</option>
                               </select>
                           </div>
                           <div class="input-group" id="aec-group">
-                              <label for="aec">Sensor AEC</label>
+                              <label for="aec">AEC SENSOR</label>
                               <div class="switch">
                                   <input id="aec" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="aec"></label>
@@ -807,14 +807,14 @@
                               </div>
                           </div>
                           <div class="input-group" id="ae_level-group">
-                              <label for="ae_level">Nível AE</label>
+                              <label for="ae_level">AE Level</label>
                               <div class="range-min">-2</div>
                               <input type="range" id="ae_level" min="-2" max="2" value="0" class="default-action">
                               <output name="rangeVal">0</output>
                               <div class="range-max">2</div>
                           </div>
                           <div class="input-group" id="aec_value-group">
-                              <label for="aec_value">Exposição</label>
+                              <label for="aec_value">Exposure</label>
                               <div class="range-min">0</div>
                               <input type="range" id="aec_value" min="0" max="1200" value="204" class="default-action">
                               <output name="rangeVal">204</output>
@@ -828,14 +828,14 @@
                               </div>
                           </div>
                           <div class="input-group hidden" id="agc_gain-group">
-                              <label for="agc_gain">Ganho</label>
+                              <label for="agc_gain">Gain</label>
                               <div class="range-min">1x</div>
                               <input type="range" id="agc_gain" min="0" max="30" value="5" class="default-action">
                               <output name="rangeVal">5</output>
                               <div class="range-max">31x</div>
                           </div>
                           <div class="input-group" id="gainceiling-group">
-                              <label for="gainceiling">Ganho máximo</label>
+                              <label for="gainceiling">Gain Ceiling</label>
                               <div class="range-min">2x</div>
                               <input type="range" id="gainceiling" min="0" max="6" value="0" class="default-action">
                               <output name="rangeVal">0</output>
@@ -856,42 +856,42 @@
                               </div>
                           </div>
                           <div class="input-group" id="raw_gma-group">
-                              <label for="raw_gma">GMA bruto</label>
+                              <label for="raw_gma">Raw GMA</label>
                               <div class="switch">
                                   <input id="raw_gma" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="raw_gma"></label>
                               </div>
                           </div>
                           <div class="input-group" id="lenc-group">
-                              <label for="lenc">Correção de lente</label>
+                              <label for="lenc">Lens Correction</label>
                               <div class="switch">
                                   <input id="lenc" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="lenc"></label>
                               </div>
                           </div>
                           <div class="input-group" id="hmirror-group">
-                              <label for="hmirror">Espelhar H</label>
+                              <label for="hmirror">H-Mirror</label>
                               <div class="switch">
                                   <input id="hmirror" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="hmirror"></label>
                               </div>
                           </div>
                           <div class="input-group" id="vflip-group">
-                              <label for="vflip">Espelhar V</label>
+                              <label for="vflip">V-Flip</label>
                               <div class="switch">
                                   <input id="vflip" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="vflip"></label>
                               </div>
                           </div>
                           <div class="input-group" id="dcw-group">
-                              <label for="dcw">DCW (Reduzir EN)</label>
+                              <label for="dcw">DCW (Downsize EN)</label>
                               <div class="switch">
                                   <input id="dcw" type="checkbox" class="default-action" checked="checked">
                                   <label class="slider" for="dcw"></label>
                               </div>
                           </div>
                           <div class="input-group" id="colorbar-group">
-                              <label for="colorbar">Barra de cor</label>
+                              <label for="colorbar">Color Bar</label>
                               <div class="switch">
                                   <input id="colorbar" type="checkbox" class="default-action">
                                   <label class="slider" for="colorbar"></label>
@@ -901,11 +901,11 @@
                     </nav>
                     <nav class="menu">
                         <input type="checkbox" id="other-cb" class="menu-action">
-                        <label for="other-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Outras configurações&nbsp;&nbsp;</label>
+                        <label for="other-cb" class="nav-toggle">&#9776;&nbsp;&nbsp;Other Settings&nbsp;&nbsp;</label>
                         <div>
-                          <h3>Configurações de rede</h3>
+                          <h3>Network settings</h3>
                           <div class="input-group" id="wifi-group">
-                              <label for "hostName">Host</label>
+                              <label for "hostName">Host Name</label>
                               <input id="hostName" name="hostName" length=32 placeholder="Host name" class="default-action">
                           </div>
                           <div class="input-group" id="wifi-group">
@@ -913,25 +913,25 @@
                               <input id="ST_SSID" name="ST_SSID" length=32 placeholder="Router SSID" class="default-action">
                           </div>
                           <div class="input-group" id="wifi-group">
-                              <label for="ST_Pass">Senha</label>
+                              <label for="ST_Pass">Password</label>
                               <input id="ST_Pass" name="ST_Pass" length=64 placeholder="Router password" class="default-action">
                           </div>
-                          <h3>Configurações da Hora</h3>
+                          <h3>Clock settings</h3>
                           <div class="input-group" id="time-group">
-                             <label for="timezone">Fuso horário</label>
+                             <label for="timezone">Time zone</label>
                              <input id="timezone" name="timezone" length=64 placeholder="Time zone string" class="default-action">
                           </div>
                           <div class="input-group" id="time-group">
-                             <label for="timezoneSel">Seleção de fuso horário</label>
+                             <label for="timezoneSel">Time zone select</label>
                              <select id="timezoneSel" name="timezoneSel">
                                 <option value="" selected>&nbsp;-- Select --</option>
-                                <option value="EET-2EEST-3,M3.5.0/03:00:00,M10.5.0/04:00:00">Europa/Athens</option>
-                                <option value="GMT0BST,M3.5.0/01,M10.5.0/02">Europa/Belfast</option>
-                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europa/Berlin</option>
-                                <option value="GMT0BST,M3.5.0/1,M10.5.0">Europa/London</option>
-                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europa/Paris</option>
-                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europa/Rome</option>
-                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europa/Zurich</option>
+                                <option value="EET-2EEST-3,M3.5.0/03:00:00,M10.5.0/04:00:00">Europe/Athens</option>
+                                <option value="GMT0BST,M3.5.0/01,M10.5.0/02">Europe/Belfast</option>
+                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Berlin</option>
+                                <option value="GMT0BST,M3.5.0/1,M10.5.0">Europe/London</option>
+                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Paris</option>
+                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Rome</option>
+                                <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Zurich</option>
                                 <option value="Etc/GMT-12">GMT-12:00</option>
                                 <option value="Etc/GMT-11">GMT-11:00</option>
                                 <option value="Etc/GMT-10">GMT-10:00</option>
@@ -963,64 +963,64 @@
                               <label for="clockUTC">Camera UTC</label>
                               <input id="clockUTC" name="clockUTC" length=20 style="max-width:124px" class="default-action">
                           </div>                          
-                          <h3>Configurações de FTP</h3>
+                          <h3>Ftp settings</h3>
                           <div class="input-group" id="ftp-group">
-                              <label for "ftp_server">Servidor FTP</label>
+                              <label for "ftp_server">Ftp Server</label>
                               <input id="ftp_server" name="ftp_server" length=32 placeholder="Ftp server name" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
-                              <label for "ftp_port">Porta</label>
+                              <label for "ftp_port">Ftp port</label>
                               <input id="ftp_port" name="ftp_port" length=6 placeholder="Ftp port" class="default-action">
                           </div>                          
                           <div class="input-group" id="ftp-group">
-                              <label for="ftp_user">Usuário</label>
+                              <label for="ftp_user">Ftp user name</label>
                               <input id="ftp_user" name="ftp_user" length=32 placeholder="Ftp user name" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
-                              <label for="ftp_pass">Senha</label>
+                              <label for="ftp_pass">Ftp password</label>
                               <input id="ftp_pass" name="ftp_pass" length=32 placeholder="Ftp password" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
-                              <label for="ftp_wd">Diretótio Raiz</label>
+                              <label for="ftp_wd">Ftp root dir</label>
                               <input id="ftp_wd" name="ftp_wd" length=64 placeholder="Ftp working directory" class="default-action">
                           </div>                          
                           <br>
-                          <h3>Configurações de SMTP</h3>
+                          <h3>SMTP settings</h3>
                           <div class="input-group" id="smtp-group">
-                              <label for "smtp_server">Servidor SMTP</label>
+                              <label for "smtp_server">SMTP server</label>
                               <input id="smtp_server" name="smtp_server" length=32 placeholder="smtp server name" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
-                              <label for "smtp_port">Porta</label>
+                              <label for "smtp_port">SMTP port</label>
                               <input id="smtp_port" name="smtp_port" length=6 placeholder="smtp port" class="default-action">
                           </div>                          
                           <div class="input-group" id="smtp-group">
-                              <label for="smtp_login">Login</label>
+                              <label for="smtp_login">SMTP login</label>
                               <input id="smtp_login" name="smtp_login" length=32 placeholder="smtp login email" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
-                              <label for="smtp_pass">Senha</label>
+                              <label for="smtp_pass">SMTP password</label>
                               <input id="smtp_pass" name="smtp_pass" length=32 placeholder="smtp password" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
-                              <label for="smtp_email">E-mail</label>
+                              <label for="smtp_email">SMTP email</label>
                               <input id="smtp_email" name="smtp_email" length=64 placeholder="smtp email to" class="default-action">
                           </div>                          
                           <br>
-                          <h3>Configurações de autenticação</h3>
+                          <h3>Authentication settings</h3>
                           <div class="input-group" id="auth-group">
-                              <label for="Auth_User">Login</label>
+                              <label for="Auth_User">Web login</label>
                               <input id="Auth_User" name="Auth_User" length=32 placeholder="Authentication user" class="default-action">
                           </div>
                           <div class="input-group" id="auth-group">
-                              <label for="Auth_Pass">Senha</label>
+                              <label for="Auth_Pass">Web password</label>
                               <input id="Auth_Pass" name="Auth_Pass" length=32 placeholder="Authentication password" class="default-action">
                           </div>                         
                           <br>
                           <div>
                             <section id="buttons">
-                              <button id="reboot" style="float:right;">Reiniciar</button>
-                              <button id="save" style="float:right;">Salvar</button>
+                              <button id="reboot" style="float:right;">Reboot</button>
+                              <button id="save" style="float:right;">Save</button>
                               <!-- <button id="format" style="float:right;">Format</button> -->
                             </section>
                           </div>   
@@ -1037,51 +1037,51 @@
             </div>
             <section id="footer">
                 <div class="info-group center" id="llevel-group">
-                    <label for="llevel">Luz ambiente</label>
+                    <label for="llevel">Ambient&nbsp;Light</label>
                     <div id="llevel" class="default-action info displayonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="night-group">
-                    <label for="night">Periodo Noturno</label>
+                    <label for="night">Night&nbsp;Time</label>
                     <div id="night" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="atemp-group">
-                    <label for="atemp">Temp. câmera</label>
+                    <label for="atemp">Camera&nbsp;Temp</label>
                     <div id="atemp" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div> 
                 <div class="info-group center" id="batt-group">
-                    <label for="battv">Bateria (V)</label>
+                    <label for="battv">Battery&nbsp;Voltage</label>
                     <div id="battv" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div> 
                 <div class="info-group center" id="clock-group">
-                    <label for="clock">Hora local</label>
+                    <label for="clock">&nbsp;Camera&nbsp;local&nbsp;time</label>
                     <div id="clock" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="uptime-group">
-                    <label for="up_time">Tempo Ativo</label>
+                    <label for="up_time">Up&nbsp;time</label>
                     <div id="up_time" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>                                                 
                 <div class="info-group center" id="rssi-group">
-                    <label for="wifi_rssi">Nível Sinal</label>
+                    <label for="wifi_rssi">Signal&nbsp;Strength</label>
                     <div id="wifi_rssi" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="heap-group">
-                    <label for="free_heap">Pilha</label>
+                    <label for="free_heap">Free&nbsp;heap</label>
                     <div id="free_heap" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>  
                 <div class="info-group center" id="heap-group">
-                    <label for="free_psram">PSRAM livre</label>
+                    <label for="free_psram">Free&nbsp;PSRAM</label>
                     <div id="free_psram" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>                 
                 <div class="info-group center" id="total-group">
-                    <label for="total_bytes">Espaço Total</label>
+                    <label for="total_bytes">Total&nbsp;space</label>
                     <div id="total_bytes" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>                
                 <div class="info-group center" id="used-group">
-                    <label for="used_bytes">Espaço Utilizado</label>
+                    <label for="used_bytes">Used&nbsp;space</label>
                     <div id="used_bytes" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="free-group">
-                    <label for="free_bytes">Espaço Livre</label>
+                    <label for="free_bytes">Free&nbsp;space</label>
                     <div id="free_bytes" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>   
             </section>                         
@@ -1094,7 +1094,7 @@
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="clearWSlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG de conexão</text>
+            <text id="clearWSlog" x="50%" y="50%" font-size="20" fill="black">Clear WS Log</text>
           </svg>
         </div>
         <div>
@@ -1107,73 +1107,73 @@
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="clearSDlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG do SD</text>
+            <text id="clearSDlog" x="50%" y="50%" font-size="20" fill="black">Clear SD Log</text>
           </svg>
         </div>
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="refreshSDlog" x="50%" y="50%" font-size="20" fill="black">Recuperar LOG do SD</text>
+            <text id="refreshSDlog" x="50%" y="50%" font-size="20" fill="black">Retrieve SD Log</text>
           </svg>
         </div>
       </div>
       <pre id='sdlog' style="height:50vh;"></pre>
     </div>
     <div id="EditConfig" class="tabcontent">
-      <h2>Controle</h2>
+      <h2>Control</h2>
       <div class="grid-cols4">
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="save" x="50%" y="50%" font-size="20" fill="black">Savar</text>
+            <text id="save" x="50%" y="50%" font-size="20" fill="black">Save</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="reset" x="50%" y="50%"font-size="20" fill="black">Reiniciar</text>
+            <text id="reset" x="50%" y="50%"font-size="20" fill="black">Reboot ESP</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="deldata" x="50%" y="50%" font-size="20" fill="black">Recarregar Spiffs</text>
+            <text id="deldata" x="50%" y="50%" font-size="20" fill="black">Reload Spiffs</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="clear" x="50%" y="50%" font-size="20" fill="black">Limpar NVS</text>
+            <text id="clear" x="50%" y="50%" font-size="20" fill="black">Clear NVS</text>
           </svg>
         </div>
         <div class="cfgTitle">
           <br/>
-          <h2>Configurações</h2>
-          <h3>Pressione um botão para visualizar ou modificar as configurações (os valores alterados não são validados)</h3>
-          <h3>Pressione o botão Salvar para tornar as alterações permanentes</h3>
+          <h2>Settings</h2>
+          <h3>Press a button to view or modify settings (changed values are not validated)</h3>
+          <h3>Press Save button to make changes permanent</h3>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="wifi" x="50%" y="50%" font-size="20" fill="black">Wi-Fi</text>
+            <text id="wifi" x="50%" y="50%" font-size="20" fill="black">Wifi</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="motion" x="50%" y="50%" font-size="20" fill="black">Movimento</text>
+            <text id="motion" x="50%" y="50%" font-size="20" fill="black">Motion</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="peripherals" x="50%" y="50%" font-size="20" fill="black">Periféricos</text>
+            <text id="peripherals" x="50%" y="50%" font-size="20" fill="black">Peripherals</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="other" x="50%" y="50%" font-size="20" fill="black">Outros</text>
+            <text id="other" x="50%" y="50%" font-size="20" fill="black">Other</text>
           </svg>
         </div>
       </div>
@@ -1829,7 +1829,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
           cfgGroupNow = cfgGroup;
           const table = document.createElement("table"); 
           // Create table header row from heading names
-          const colHeaders = ['Nome da configuração', 'Valor']; 
+          const colHeaders = ['Setting Name', 'Setting Value']; 
           let tr = table.insertRow(-1); 
           for (let i = 0; i < colHeaders.length; i++) {
             let th = document.createElement("th");    
@@ -1917,4 +1917,3 @@ document.addEventListener('DOMContentLoaded', function (event) {
       </script>        
     </body>
 </html>
-
