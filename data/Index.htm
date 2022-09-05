@@ -637,8 +637,8 @@
                           <progress id="progressBar" value='0' max='100' class="default-action info"></progress>%
                           <section id="buttons"><br>
                             <button title="Download selected file from sd card" id="download" style="float:right; " value="1">Download</button>
-                            <button title="Upload selected file/folder to ftp server" id="upload" style="float:left; " value="1">Enviar FTP</button>
-                            <button title="Upload selected file/folder and delete it from sd card on success" id="uploadMove" style="float:left; " value="1">Mover FTP</button>
+                            <button title="Upload selected file/folder to ftp server" id="upload" style="float:left; " value="1">Copiar p/ FTP</button>
+                            <button title="Upload selected file/folder and delete it from sd card on success" id="uploadMove" style="float:left; " value="1">Mover p/ FTP</button>
                             <button title="Delete selected file/folder from sd card" id="delete" style="float:right; " value="1">Apagar</button>
                           </section><br>
                           <div class="input-group" id="autoUpload-group">
@@ -910,7 +910,7 @@
                           </div>
                           <div class="input-group" id="wifi-group">
                               <label for "ST_SSID">SSID</label>
-                              <input id="ST_SSID" name="ST_SSID" length=32 placeholder="Router SSID" class="default-action">
+                              <input id="ST_SSID" name="ST_SSID" length=32 placeholder="SSID" class="default-action">
                           </div>
                           <div class="input-group" id="wifi-group">
                               <label for="ST_Pass">Senha</label>
@@ -966,55 +966,55 @@
                           <h3>Configurações de FTP</h3>
                           <div class="input-group" id="ftp-group">
                               <label for "ftp_server">Servidor</label>
-                              <input id="ftp_server" name="ftp_server" length=32 placeholder="Ftp server name" class="default-action">
+                              <input id="ftp_server" name="ftp_server" length=32 placeholder="Nome do servidor" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for "ftp_port">Porta</label>
-                              <input id="ftp_port" name="ftp_port" length=6 placeholder="Ftp port" class="default-action">
+                              <input id="ftp_port" name="ftp_port" length=6 placeholder="Porta FTP" class="default-action">
                           </div>                          
                           <div class="input-group" id="ftp-group">
                               <label for="ftp_user">Usuário</label>
-                              <input id="ftp_user" name="ftp_user" length=32 placeholder="Ftp user name" class="default-action">
+                              <input id="ftp_user" name="ftp_user" length=32 placeholder="Usuário FTP" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for="ftp_pass">Senha</label>
-                              <input id="ftp_pass" name="ftp_pass" length=32 placeholder="Ftp password" class="default-action">
+                              <input id="ftp_pass" name="ftp_pass" length=32 placeholder="Senha FTP" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for="ftp_wd">Diretório</label>
-                              <input id="ftp_wd" name="ftp_wd" length=64 placeholder="Ftp working directory" class="default-action">
+                              <input id="ftp_wd" name="ftp_wd" length=64 placeholder="Diretório FTP" class="default-action">
                           </div>                          
                           <br>
                           <h3>Configurações de SMTP</h3>
                           <div class="input-group" id="smtp-group">
                               <label for "smtp_server">Servidor</label>
-                              <input id="smtp_server" name="smtp_server" length=32 placeholder="smtp server name" class="default-action">
+                              <input id="smtp_server" name="smtp_server" length=32 placeholder="Servidor SMTP" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
                               <label for "smtp_port">Porta</label>
-                              <input id="smtp_port" name="smtp_port" length=6 placeholder="smtp port" class="default-action">
+                              <input id="smtp_port" name="smtp_port" length=6 placeholder="Porta SMTP" class="default-action">
                           </div>                          
                           <div class="input-group" id="smtp-group">
                               <label for="smtp_login">Login</label>
-                              <input id="smtp_login" name="smtp_login" length=32 placeholder="smtp login email" class="default-action">
+                              <input id="smtp_login" name="smtp_login" length=32 placeholder="Login SMTP" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
                               <label for="smtp_pass">Senha</label>
-                              <input id="smtp_pass" name="smtp_pass" length=32 placeholder="smtp password" class="default-action">
+                              <input id="smtp_pass" name="smtp_pass" length=32 placeholder="Senha SMTP" class="default-action">
                           </div>
                           <div class="input-group" id="smtp-group">
                               <label for="smtp_email">E-mail</label>
-                              <input id="smtp_email" name="smtp_email" length=64 placeholder="smtp email to" class="default-action">
+                              <input id="smtp_email" name="smtp_email" length=64 placeholder="E-mail para" class="default-action">
                           </div>                          
                           <br>
                           <h3>Configurações de autenticação</h3>
                           <div class="input-group" id="auth-group">
                               <label for="Auth_User">Login</label>
-                              <input id="Auth_User" name="Auth_User" length=32 placeholder="Authentication user" class="default-action">
+                              <input id="Auth_User" name="Auth_User" length=32 placeholder="Usuário" class="default-action">
                           </div>
                           <div class="input-group" id="auth-group">
                               <label for="Auth_Pass">Senha</label>
-                              <input id="Auth_Pass" name="Auth_Pass" length=32 placeholder="Authentication password" class="default-action">
+                              <input id="Auth_Pass" name="Auth_Pass" length=32 placeholder="Senha" class="default-action">
                           </div>                         
                           <br>
                           <div>
@@ -1037,7 +1037,7 @@
             </div>
             <section id="footer">
                 <div class="info-group center" id="llevel-group">
-                    <label for="llevel">Ambiente&nbsp;luz</label>
+                    <label for="llevel">Luz&nbsp;Ambiente</label>
                     <div id="llevel" class="default-action info displayonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="night-group">
@@ -1045,15 +1045,15 @@
                     <div id="night" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="atemp-group">
-                    <label for="atemp">Temp&nbsp;câmera</label>
+                    <label for="atemp">Tempo&nbsp;ligado</label>
                     <div id="atemp" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div> 
                 <div class="info-group center" id="batt-group">
-                    <label for="battv">Bateria&nbsp;Voltagem</label>
+                    <label for="battv">Voltagem&nbsp;bateria</label>
                     <div id="battv" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div> 
                 <div class="info-group center" id="clock-group">
-                    <label for="clock">&nbsp;Hora&nbsp;local</label>
+                    <label for="clock">Hora&nbsp;local</label>
                     <div id="clock" class="default-action info displayonly" name="textonly">&nbsp;</div>
                 </div>
                 <div class="info-group center" id="uptime-group">
@@ -1094,7 +1094,7 @@
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="clearWSlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG conexão</text>
+            <text id="clearWSlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG</text>
           </svg>
         </div>
         <div>
@@ -1107,13 +1107,13 @@
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="clearSDlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG SD</text>
+            <text id="clearSDlog" x="50%" y="50%" font-size="20" fill="black">Limpar LOG</text>
           </svg>
         </div>
         <div>
           <svg width="150" height="40">
             <rect/>
-            <text id="refreshSDlog" x="50%" y="50%" font-size="20" fill="black">Recuperar SD Log</text>
+            <text id="refreshSDlog" x="50%" y="50%" font-size="20" fill="black">Recuperar LOG</text>
           </svg>
         </div>
       </div>
@@ -1131,13 +1131,13 @@
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="reset" x="50%" y="50%"font-size="20" fill="black">Reiniciar placa</text>
+            <text id="reset" x="50%" y="50%"font-size="20" fill="black">Reiniciar</text>
           </svg>
         </div>
         <div>
           <svg width="120" height="40">
             <rect/>
-            <text id="deldata" x="50%" y="50%" font-size="20" fill="black">Recarregar Spiffs</text>
+            <text id="deldata" x="50%" y="50%" font-size="25" fill="black">Recarregar</text>
           </svg>
         </div>
         <div>
@@ -1164,6 +1164,7 @@
             <text id="motion" x="50%" y="50%" font-size="20" fill="black">Movimento</text>
           </svg>
         </div>
+		<!--
         <div>
           <svg width="120" height="40">
             <rect/>
@@ -1171,6 +1172,7 @@
           </svg>
         </div>
         <div>
+		-->
           <svg width="120" height="40">
             <rect/>
             <text id="other" x="50%" y="50%" font-size="20" fill="black">Outros</text>
@@ -1282,7 +1284,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
       } else if(el.id === "forceRecord"){ 
           if(value){
-            document.getElementById("forceRecord").innerHTML='Parar gravação'
+            document.getElementById("forceRecord").innerHTML='Parar'
             document.getElementById("forceRecord").classList.add("blinking")
           }else{
             document.getElementById("forceRecord").innerHTML='Gravar'          
@@ -1385,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
             updateValue(el, state[el.id], false)
           })
           if(state['isrecord']=='Yes' && document.getElementById("forceRecord").innerHTML=='Gravar')  updateValue(document.getElementById('forceRecord'), 1, false)
-          if(state['isrecord']=='No' && document.getElementById("forceRecord").innerHTML=='Parar gravação')  updateValue(document.getElementById('forceRecord'), 0, false)
+          if(state['isrecord']=='No' && document.getElementById("forceRecord").innerHTML=='Parar')  updateValue(document.getElementById('forceRecord'), 0, false)
           refreshVal = state['refreshVal'];
           timer = setTimeout(refresh_status_quick, refreshVal);
           document.getElementById('progressBar').value = state['progressBar'];
@@ -1487,7 +1489,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 //    $("#stream-container").css("height", srcSize.height);
 //    $("#stream").css("width", srcSize.width);
 //    $("#stream").css("height", srcSize.height);
-    streamButton.innerHTML = 'Start Stream'
+    streamButton.innerHTML = 'Ver câmera'
     $.ajax({
       url: baseHost + '/control',
       data: {
@@ -1508,7 +1510,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var recOn = 0;
     if(forceRecord.innerHTML == 'Gravar'){
       forceRecord.classList.add("blinking")
-      forceRecord.innerHTML='Parar gravação'
+      forceRecord.innerHTML='Parar'
       var recOn = 1;
     }else{
       forceRecord.classList.remove("blinking")
